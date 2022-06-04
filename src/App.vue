@@ -17,7 +17,6 @@
 
 <script>
 export default {
-
       mounted() {
         this.generatePassword();
     },
@@ -26,7 +25,6 @@ export default {
         var slider = document.getElementById("myRange");
         var output = document.getElementById("length");
         output.innerHTML = slider.value;
-
         slider.oninput = function() {
             output.innerHTML = this.value;
             var length = slider.value;
@@ -46,7 +44,6 @@ export default {
         }      
       
     },
-
     copy() {
       var copyText = document.getElementById("inputText");
       copyText.select();
@@ -54,11 +51,8 @@ export default {
       navigator.clipboard.writeText(copyText.value);
       alert("Copied password: " + copyText.value);
     }
-
   }
-
 }
-
 </script>
 
 <style>
@@ -69,11 +63,9 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
-
 .title {
-  margin-top: 100px;
+  margin-top: 70px;
 }
-
 .box{
     color: rgb(250, 250, 250);
     width: 800px;
@@ -86,9 +78,8 @@ export default {
     position: absolute;
     left: 50%;
     transform: translate(-50%);
-    margin-top: 250px;
+    margin-top: 230px;
 }
-
 .btnCopy {
   background-color: #4CAF50;
   border: none;
@@ -101,7 +92,6 @@ export default {
   cursor: pointer;
   transition-duration: 0.4s;
 }
-
 .btn {
     background-color: #4CAF50;
     border: none;
@@ -117,12 +107,10 @@ export default {
 .btn:hover {
 	background-color: rgb(18, 129, 3);
 }
-
 .password {
   font-size: 20px;
   margin-left: 10px;
 }
-
 .slider {
   -webkit-appearance: none;
   width: 25%;
@@ -134,7 +122,6 @@ export default {
   -webkit-transition: .2s;
   transition: opacity .2s;
 }
-
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
@@ -144,7 +131,6 @@ export default {
   background: #4CAF50;
   cursor: pointer;
 }
-
 .slider::-moz-range-thumb {
   width: 25px;
   height: 25px;
@@ -152,11 +138,9 @@ export default {
   background: #4CAF50;
   cursor: pointer;
 }
-
 body {
   background-color: #2b2b2b;
 }
-
 .center {
   margin-left: auto;
   margin-right: auto;
@@ -166,8 +150,15 @@ body {
 
 @media screen and (max-width: 600px) {
   .box {
-    width: 80%;
-    margin-top: 50px;
+    width: 75%;
+    margin-top: 150px;
+  }
+  .slider {
+    width: 70%;
+  }
+
+  .btn {
+    font-size: 16px;
   }
 }
 </style>
