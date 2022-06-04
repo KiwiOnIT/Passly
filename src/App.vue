@@ -163,4 +163,11 @@ body {
   display: flex;
   justify-content: center;
 }
+
+@media screen and (max-width: 600px) {
+  .box {
+    width: 80%;
+    margin-top: 50px;
+  }
+}
 </style>
