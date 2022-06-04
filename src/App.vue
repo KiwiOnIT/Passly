@@ -4,7 +4,7 @@
   <p class="center">A simple password generator !</p>
     <div>
       <button value='Generate password'  class="btn center" v-on:click="this.generatePassword()">Generate</button>
-      <input type="text"  id="inputText" v-model="password" class="password center" readonly>
+      <input type="text"  id="inputText" v-model="password" class="password" readonly>
       <button  class="btnCopy" v-on:click="this.copy()">Copy</button>
       <p> </p>
       <input type="range" min="8" max="32" value="16" class="slider" id="myRange">
