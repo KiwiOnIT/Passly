@@ -4,6 +4,7 @@
   <p class="center">A simple password generator !</p>
     <div>
       <button value='Generate password'  class="btn center" v-on:click="this.generatePassword()">Generate</button>
+      <p> </p>
       <input type="text"  id="inputText" v-model="password" class="password" readonly>
       <button  class="btnCopy" v-on:click="this.copy()">Copy</button>
       <p> </p>
