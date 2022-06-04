@@ -5,6 +5,7 @@
     <div>
       <button value='Generate password'  class="btn" v-on:click="this.generatePassword()">Generate</button>
       <input type="text"  id="inputText" v-model="password" class="password" readonly>
+      <button  class="btnCopy" v-on:click="this.copy()">Copy</button>
       <p> </p>
       <input type="range" min="8" max="32" value="16" class="slider" id="myRange">
       <p>Length: <span id="length"></span></p>
@@ -27,6 +28,13 @@ export default {
 
         slider.oninput = function() {
             output.innerHTML = this.value;
+            var length = slider.value;
+            var charset = '!@#$%^&*()_-+={[}]|:;"<,>.?/abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+            var retVal = "";
+            for (var i = 0, n = charset.length; i < length; ++i) {
+            retVal += charset.charAt(Math.floor(Math.random() * n));
+            document.getElementById('inputText').value = retVal ;
+        }      
         }
         var length = slider.value;
         var charset = '!@#$%^&*()_-+={[}]|:;"<,>.?/abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
@@ -35,6 +43,15 @@ export default {
             retVal += charset.charAt(Math.floor(Math.random() * n));
             document.getElementById('inputText').value = retVal 
         }      
+      
+    },
+
+    copy() {
+      var copyText = document.getElementById("inputText");
+      copyText.select();
+      copyText.setSelectionRange(0, 99999);
+      navigator.clipboard.writeText(copyText.value);
+      alert("Copied password: " + copyText.value);
     }
 
   }
@@ -69,6 +86,19 @@ export default {
     left: 50%;
     transform: translate(-50%);
     margin-top: 250px;
+}
+
+.btnCopy {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 3px 23px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 20px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition-duration: 0.4s;
 }
 
 .btn {
