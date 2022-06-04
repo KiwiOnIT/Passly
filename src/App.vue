@@ -11,6 +11,8 @@
       <input type="range" min="8" max="32" value="16" class="slider" id="myRange">
       <p>Length: <span id="length"></span></p>
     </div>
+
+    <p> Made by <a  class="git-link" href="https://github.com/KiwiOnIT">KiwiIT</a> !</p>
 </div>
 
 </template>
@@ -65,6 +67,10 @@ export default {
 }
 .title {
   margin-top: 70px;
+}
+
+.git-link {
+  color: #00fa0c;
 }
 .box{
     color: rgb(250, 250, 250);
