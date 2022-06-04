@@ -1,6 +1,7 @@
 <template>
 <div class="box">
-  <h1 class="title">Password generator</h1>
+  <h1 class="title">Passly</h1>
+  <p class="center">A simple password generator !</p>
     <div>
       <button value='Generate password'  class="btn" v-on:click="this.generatePassword()">Generate</button>
       <input type="text"  id="inputText" v-model="password" class="password" readonly>
@@ -123,5 +124,12 @@ export default {
 
 body {
   background-color: #2b2b2b;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
 }
 </style>
