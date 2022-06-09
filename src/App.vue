@@ -3,7 +3,9 @@
   <h1 class="title">Passly</h1>
   <p class="center">A simple password generator !</p>
     <div>
-      <button value='Generate password'  class="btn center" v-on:click="this.generatePassword()">Generate</button>
+      <div>
+        <button value='Generate password'  class="btn center" v-on:click="this.generatePassword()">Generate</button>
+      </div>
       <p> </p>
       <input type="text"  id="inputText" v-model="password" class="password" readonly>
       <button  class="btnCopy" v-on:click="this.copy()">Copy</button>
@@ -65,12 +67,13 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+
 .title {
-  margin-top: 70px;
+  margin-top: 60px;
 }
 
 .git-link {
-  color: #00fa0c;
+  color: rgb(241, 218, 11);
 }
 .box{
     color: rgb(250, 250, 250);
@@ -86,33 +89,7 @@ export default {
     transform: translate(-50%);
     margin-top: 230px;
 }
-.btnCopy {
-  background-color: #4CAF50;
-  border: none;
-  color: white;
-  padding: 3px 23px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 20px;
-  border-radius: 2px;
-  cursor: pointer;
-  transition-duration: 0.4s;
-}
-.btn {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 24px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition-duration: 0.4s;
-}
-.btn:hover {
-	background-color: rgb(18, 129, 3);
-}
+
 .password {
   font-size: 20px;
   margin-left: 10px;
@@ -134,14 +111,14 @@ export default {
   width: 25px;
   height: 25px;
   border-radius: 50%; 
-  background: #4CAF50;
+  background: rgb(241, 218, 11);
   cursor: pointer;
 }
 .slider::-moz-range-thumb {
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background: #4CAF50;
+  background: rgb(241, 218, 11);
   cursor: pointer;
 }
 body {
@@ -167,4 +144,51 @@ body {
     font-size: 16px;
   }
 }
+
+.btn{
+    display: inline-block;
+    background-color: rgb(37, 35, 35);
+    color:rgb(241, 218, 11);
+    border: 1px solid rgb(241, 218, 11);
+    padding:8px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 24px;
+    cursor: default;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px -2px rgb(241, 218, 11);
+    transition-duration: .5s;
+}
+
+.btn:hover{
+    background-color:rgb(241, 218, 11);
+    color: rgb(37, 35, 35);
+    box-shadow: 0px 2px 12px -2px rgb(241, 218, 11);
+    transition-duration: .5s;
+}
+
+.btn:active{
+    margin-top:3px;
+    transition-duration: .2s;
+}
+
+.btnCopy{
+    display: inline-block;
+    background-color: rgb(37, 35, 35);
+    color:rgb(241, 218, 11);
+    border: 1px solid rgb(241, 218, 11);
+    padding:6px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 14px;
+    cursor: default;
+    border-radius: 4px;
+    box-shadow: 0px 2px 10px -2px rgb(241, 218, 11);
+    transition-duration: .5s;
+}
+
+  .btnCopy:hover{
+      background-color:rgb(241, 218, 11);
+      color: rgb(37, 35, 35);
+      box-shadow: 0px 2px 12px -2px rgb(241, 218, 11);
+      transition-duration: .5s;
+  }
 </style>
