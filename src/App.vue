@@ -83,7 +83,7 @@ export default {
     border-radius: 3px;
     height: auto;
     background: #393939;
-    box-shadow: 0 10px 15px rgba(0,0,0,0.5);
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
     position: absolute;
     left: 50%;
     transform: translate(-50%);
@@ -93,6 +93,8 @@ export default {
 .password {
   font-size: 20px;
   margin-left: 10px;
+  margin-top: 10px;
+  width: 375px;
 }
 .slider {
   -webkit-appearance: none;
@@ -131,7 +133,7 @@ body {
   justify-content: center;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
   .box {
     width: 75%;
     margin-top: 150px;
@@ -142,6 +144,10 @@ body {
 
   .btn {
     font-size: 16px;
+  }
+  .password {
+    font-size: 16px;
+    width: 50%;
   }
 }
 
@@ -185,10 +191,10 @@ body {
     transition-duration: .5s;
 }
 
-  .btnCopy:hover{
-      background-color:rgb(241, 218, 11);
-      color: rgb(37, 35, 35);
-      box-shadow: 0px 2px 12px -2px rgb(241, 218, 11);
-      transition-duration: .5s;
-  }
+.btnCopy:hover{
+    background-color:rgb(241, 218, 11);
+    color: rgb(37, 35, 35);
+    box-shadow: 0px 2px 12px -2px rgb(241, 218, 11);
+    transition-duration: .5s;
+}
 </style>
