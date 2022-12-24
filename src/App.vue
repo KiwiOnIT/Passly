@@ -49,7 +49,9 @@
       </div>
     <br>
     <button value='Generate password' class="btn center" v-on:click="generatePassword">Generate</button>
-    <p class="center"> Made by <a class="git-link" href="https://github.com/KiwiOnIT">KiwiIT</a> !</p>
+    <div class="center">
+      <p> Made by <a class="git-link" href="https://github.com/KiwiOnIT">KiwiIT</a> !</p>
+    </div>
   </div>
 </template>
 
@@ -288,4 +290,4 @@ body {
 .settings-text{
   margin-left: 25px;
 }
-</style>
+</style>  
