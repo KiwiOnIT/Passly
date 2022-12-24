@@ -4,7 +4,9 @@
     <div id="password" v-text="password" class="password in-box"></div>
     <p>Length: <span id="length" v-text="length"></span></p>
     <div class="in-box">
-      <input type="range" min="8" max="32" value="20" class="slider" id="myRange">
+      <label for="myRange">
+        <input type="range" min="8" max="32" value="20" class="slider" id="myRange">
+      </label>
     </div>
     <p>Settings:</p>
 
