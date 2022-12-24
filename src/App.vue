@@ -1,62 +1,109 @@
 <template>
-<div class="box">
-  <h1 class="title">Passly</h1>
-  <p class="center">A simple password generator !</p>
-    <div>
-      <div>
-        <button value='Generate password'  class="btn center" v-on:click="this.generatePassword()">Generate</button>
-      </div>
-      <p> </p>
-      <input type="text"  id="inputText" v-model="password" class="password" readonly>
-      <button  class="btnCopy" v-on:click="this.copy()">Copy</button>
-      <p> </p>
-      <input type="range" min="8" max="32" value="16" class="slider" id="myRange">
-      <p>Length: <span id="length"></span></p>
+  <div class="box">
+    <h1 class="title">Passly</h1>
+    <div id="password" v-text="password" class="password in-box"></div>
+    <p>Length: <span id="length" v-text="length"></span></p>
+    <div class="in-box">
+      <input type="range" min="8" max="32" value="20" class="slider" id="myRange">
     </div>
+    <p>Settings:</p>
 
-    <p> Made by <a  class="git-link" href="https://github.com/KiwiOnIT">KiwiIT</a> !</p>
-</div>
-
+    <div class="in-box d-flex" style="align-items: center;">
+      <p class="settings-text" style="flex: 1; text-align: left;">Include uppercase characters</p>
+      <label class="toggler-wrapper style-4" style="flex: 0 0 auto; text-align: left; display: inline-block; margin-right: 25px;">
+          <input type="checkbox" v-model="includeUppercase">
+          <div class="toggler-slider">
+            <div class="toggler-knob"></div>
+          </div>
+        </label>
+    </div>
+      <br>
+      <div class="in-box d-flex" style="align-items: center;">
+        <p class="settings-text" style="flex: 1; text-align: left;">Include lowercase characters</p>
+        <label class="toggler-wrapper style-4" style="flex: 0 0 auto; text-align: left; display: inline-block; margin-right: 25px;">
+          <input type="checkbox" v-model="includeLowercase">
+          <div class="toggler-slider">
+            <div class="toggler-knob"></div>
+          </div>
+        </label>
+      </div>
+      <br>
+      <div class="in-box d-flex" style="align-items: center;">
+        <p class="settings-text" style="flex: 1; text-align: left;">Include special characters</p>
+        <label class="toggler-wrapper style-4" style="flex: 0 0 auto; text-align: left; display: inline-block; margin-right: 25px;">
+          <input type="checkbox" v-model="includeSpecialCharacters">
+          <div class="toggler-slider">
+            <div class="toggler-knob"></div>
+          </div>
+        </label>
+      </div>
+      <br>
+      <div class="in-box d-flex" style="align-items: center;">
+        <p class="settings-text" style="flex: 1; text-align: left;">Include numbers</p>
+        <label class="toggler-wrapper style-4" style="flex: 0 0 auto; text-align: left; display: inline-block; margin-right: 25px;">
+          <input type="checkbox" v-model="includeNumbers">
+          <div class="toggler-slider">
+            <div class="toggler-knob"></div>
+          </div>
+        </label>
+      </div>
+    <br>
+    <button value='Generate password' class="btn center" v-on:click="generatePassword">Generate</button>
+    <p class="center"> Made by <a class="git-link" href="https://github.com/KiwiOnIT">KiwiIT</a> !</p>
+  </div>
 </template>
 
 <script>
 export default {
-      mounted() {
-        this.generatePassword();
-    },
-    methods: {
-       generatePassword() {
-        var slider = document.getElementById("myRange");
-        var output = document.getElementById("length");
-        output.innerHTML = slider.value;
-        slider.oninput = function() {
-            output.innerHTML = this.value;
-            var length = slider.value;
-            var charset = '!@#$%^&*()_-+={[}]|:;"<,>.?/abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
-            var retVal = "";
-            for (var i = 0, n = charset.length; i < length; ++i) {
-            retVal += charset.charAt(Math.floor(Math.random() * n));
-            document.getElementById('inputText').value = retVal ;
-        }      
-        }
-        var length = slider.value;
-        var charset = '!@#$%^&*()_-+={[}]|:;"<,>.?/abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
-        var retVal = "";
-        for (var i = 0, n = charset.length; i < length; ++i) {
-            retVal += charset.charAt(Math.floor(Math.random() * n));
-            document.getElementById('inputText').value = retVal 
-        }      
-      
-    },
-    copy() {
-      var copyText = document.getElementById("inputText");
-      copyText.select();
-      copyText.setSelectionRange(0, 99999);
-      navigator.clipboard.writeText(copyText.value);
-      alert("Copied password: " + copyText.value);
+  data() {
+    return {
+      includeUppercase: true,
+      includeLowercase: true,
+      includeSpecialCharacters: true,
+      includeNumbers: true,
+      password: '',
+      length: 20,
+    };
+  },
+  mounted() {
+    var slider = document.getElementById("myRange");
+    var output = document.getElementById("length");
+    if (output) {
+      output.innerHTML = slider.value;
     }
-  }
-}
+    slider.oninput = (event) => {
+      if (output) {
+        output.innerHTML = event.target.value;
+      }
+      this.length = event.target.value;
+      this.generatePassword();
+    };
+    this.generatePassword();
+  },
+  methods: {
+    generatePassword() {
+      var length = this.length;
+      var charset = '';
+      if (this.includeUppercase) {
+        charset += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      }
+      if (this.includeLowercase) {
+        charset += 'abcdefghijklmnopqrstuvwxyz';
+      }
+      if (this.includeSpecialCharacters) {
+        charset += '!@#$%^&*()_-+={[}]|:;"<,>.?/';
+      }
+      if (this.includeNumbers) {
+        charset += '0123456789';
+      }
+      var retVal = '';
+      for (var i = 0, n = charset.length; i < length; ++i) {
+        retVal += charset.charAt(Math.floor(Math.random() * n));
+      }
+      this.password = retVal;
+    },
+  },
+};
 </script>
 
 <style>
@@ -64,44 +111,49 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  text-align: left;
   color: #2c3e50;
 }
 
 .title {
-  margin-top: 60px;
+  margin-top: 20px;
+  font-size: 1.75rem;
 }
 
 .git-link {
-  color: rgb(241, 218, 11);
+  color: rgb(11, 241, 107);
 }
 .box{
     color: rgb(250, 250, 250);
-    width: 800px;
-    min-height: 400px;
+    width: 20vw;
+    min-height: 60vh;
     padding: 20px;
-    border-radius: 3px;
+    border-radius: 10px;
     height: auto;
-    background: #393939;
+    background: #2b2b2b;
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
     position: absolute;
     left: 50%;
     transform: translate(-50%);
-    margin-top: 230px;
+    margin-top: 7vh;
+    padding: 10px 25px;
 }
 
 .password {
-  font-size: 20px;
-  margin-left: 10px;
-  margin-top: 10px;
-  width: 375px;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  color: #fff;
+  text-align: center;
+  line-height: 65px;
 }
 .slider {
   -webkit-appearance: none;
-  width: 25%;
-  height: 15px;
+  width: 80%;
+  height: 2px;
   border-radius: 5px;  
-  background: #d3d3d3;
+  background: whitesmoke;
   outline: none;
   opacity: 0.7;
   -webkit-transition: .2s;
@@ -113,14 +165,14 @@ export default {
   width: 25px;
   height: 25px;
   border-radius: 50%; 
-  background: rgb(241, 218, 11);
+  background: rgb(11, 241, 107);
   cursor: pointer;
 }
 .slider::-moz-range-thumb {
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background: rgb(241, 218, 11);
+  background: rgb(11, 241, 107);
   cursor: pointer;
 }
 body {
@@ -152,49 +204,88 @@ body {
 }
 
 .btn{
-    display: inline-block;
-    background-color: rgb(37, 35, 35);
-    color:rgb(241, 218, 11);
-    border: 1px solid rgb(241, 218, 11);
-    padding:8px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 24px;
-    cursor: default;
-    border-radius: 10px;
-    box-shadow: 0px 2px 10px -2px rgb(241, 218, 11);
-    transition-duration: .5s;
+  background-color: rgb(11, 241, 107);
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  font-size: 24px;
 }
 
-.btn:hover{
-    background-color:rgb(241, 218, 11);
-    color: rgb(37, 35, 35);
-    box-shadow: 0px 2px 12px -2px rgb(241, 218, 11);
-    transition-duration: .5s;
+.btn:hover {
+  background-color: rgb(0, 222, 92);
 }
 
-.btn:active{
-    margin-top:3px;
-    transition-duration: .2s;
+.in-box{
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  color: #fff;
+  text-align: center;
+  line-height: 50px;
 }
 
-.btnCopy{
-    display: inline-block;
-    background-color: rgb(37, 35, 35);
-    color:rgb(241, 218, 11);
-    border: 1px solid rgb(241, 218, 11);
-    padding:6px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 14px;
-    cursor: default;
-    border-radius: 4px;
-    box-shadow: 0px 2px 10px -2px rgb(241, 218, 11);
-    transition-duration: .5s;
+.toggler-wrapper {
+    display: block;
+    width: 45px;
+    height: 25px;
+    cursor: pointer;
+    position: relative;
 }
 
-.btnCopy:hover{
-    background-color:rgb(241, 218, 11);
-    color: rgb(37, 35, 35);
-    box-shadow: 0px 2px 12px -2px rgb(241, 218, 11);
-    transition-duration: .5s;
+.toggler-wrapper input[type="checkbox"] {
+    display: none;
+}
+
+.toggler-wrapper input[type="checkbox"]:checked+.toggler-slider {
+    background-color: #44cc66;
+}
+
+.toggler-wrapper .toggler-slider {
+    background-color: #ccc;
+    position: absolute;
+    border-radius: 100px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: all 300ms ease;
+    transition: all 300ms ease;
+}
+
+.toggler-wrapper .toggler-knob {
+    position: absolute;
+    -webkit-transition: all 300ms ease;
+    transition: all 300ms ease;
+}
+.toggler-wrapper.style-4 input[type="checkbox"]:checked+.toggler-slider .toggler-knob {
+    left: calc(100% - 19px - 3px);
+}
+
+.toggler-wrapper.style-4 .toggler-knob {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    left: 0;
+    top: 0;
+    background-color: #fff;
+    -webkit-box-shadow: 0 2px 6px rgba(153, 153, 153, 0.75);
+    box-shadow: 0 2px 6px rgba(153, 153, 153, 0.75);
+}
+
+.d-flex{
+  display: flex;
+}
+
+.settings-text{
+  margin-left: 25px;
 }
 </style>
