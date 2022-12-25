@@ -1,17 +1,18 @@
 <template>
   <div class="box">
     <h1 class="title">Passly</h1>
+    <div class="bar"></div>
     <div class="d-flex">
       <div id="password" v-text="password" class="password in-box"></div>
       <button id="copy" v-on:click="copyText" class="copyBtn">📋</button>
     </div>
-    <p>Length: <span id="length" v-text="length"></span></p>
+    <p style="color: rgba(255, 255, 255, 0.6);">Length: <span id="length" v-text="length" style="color: rgb(11, 241, 107);"></span></p>
     <div class="in-box">
       <label for="myRange">
         <input type="range" min="8" max="32" value="20" class="slider" id="myRange">
       </label>
     </div>
-    <p>Settings:</p>
+    <p style="color: rgba(255, 255, 255, 0.6);">Settings:</p>
     <div class="in-box d-flex" style="align-items: center;">
       <p class="settings-text" style="flex: 1; text-align: left;">Include uppercase characters</p>
       <label class="toggler-wrapper style-4" style="flex: 0 0 auto; text-align: left; display: inline-block; margin-right: 25px;">
@@ -57,6 +58,7 @@
       <p> Made by <a class="git-link" href="https://github.com/KiwiOnIT">KiwiIT</a> !</p>
     </div>
   </div>
+  <br>
 </template>
 
 <script>
@@ -135,6 +137,13 @@ export default {
   font-size: 1.75rem;
 }
 
+.bar{
+  width: 15vh;
+  height: 3px;
+  background-color: rgb(11, 241, 107);
+  margin-bottom: 25px;
+}
+
 .git-link {
   color: rgb(11, 241, 107);
 }
@@ -198,23 +207,6 @@ body {
   margin-right: auto;
   display: flex;
   justify-content: center;
-}
-
-@media screen and (max-width: 1000px) {
-  .box {
-    width: 75%;
-  }
-  .slider {
-    width: 70%;
-  }
-
-  .btn {
-    font-size: 16px;
-  }
-  .password {
-    font-size: 14px;
-    width: 50%;
-  }
 }
 
 .btn{
@@ -317,4 +309,13 @@ body {
 .settings-text{
   margin-left: 25px;
 }
-</style>  
+
+@media screen and (max-width: 1000px) {
+  .box {
+    width: 75%;
+  }
+  .password {
+    font-size: 14px;
+  }
+}
+</style>
