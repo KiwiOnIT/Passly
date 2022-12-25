@@ -203,7 +203,6 @@ body {
 @media screen and (max-width: 1000px) {
   .box {
     width: 75%;
-    margin-top: 150px;
   }
   .slider {
     width: 70%;
