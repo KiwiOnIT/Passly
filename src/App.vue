@@ -1,7 +1,10 @@
 <template>
   <div class="box">
     <h1 class="title">Passly</h1>
-    <div id="password" v-text="password" class="password in-box"></div>
+    <div class="d-flex">
+      <div id="password" v-text="password" class="password in-box"></div>
+      <button id="copy" v-on:click="copyText" class="copyBtn">📋</button>
+    </div>
     <p>Length: <span id="length" v-text="length"></span></p>
     <div class="in-box">
       <label for="myRange">
@@ -9,7 +12,6 @@
       </label>
     </div>
     <p>Settings:</p>
-
     <div class="in-box d-flex" style="align-items: center;">
       <p class="settings-text" style="flex: 1; text-align: left;">Include uppercase characters</p>
       <label class="toggler-wrapper style-4" style="flex: 0 0 auto; text-align: left; display: inline-block; margin-right: 25px;">
@@ -106,6 +108,15 @@ export default {
       }
       this.password = retVal;
     },
+    copyText() {
+      const text = document.querySelector('#password').textContent;
+      const tempInput = document.createElement('input');
+      tempInput.value = text;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+  }
   },
 };
 </script>
@@ -202,7 +213,7 @@ body {
     font-size: 16px;
   }
   .password {
-    font-size: 16px;
+    font-size: 14px;
     width: 50%;
   }
 }
@@ -224,6 +235,21 @@ body {
 }
 
 .btn:hover {
+  background-color: rgb(0, 222, 92);
+}
+
+.copyBtn{
+  background-color: rgb(11, 241, 107);
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  float: right;
+  margin-left: 5px;
+}
+
+.copyBtn:hover {
   background-color: rgb(0, 222, 92);
 }
 
