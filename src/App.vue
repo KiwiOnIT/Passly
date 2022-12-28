@@ -6,7 +6,7 @@
       <div id="password" v-text="password" class="password in-box"></div>
       <button id="copy" v-on:click="copyText" class="copyBtn">📋</button>
     </div>
-    <p style="color: rgba(255, 255, 255, 0.6);">Length: <span id="length" v-text="length" style="color: rgb(11, 241, 107);"></span></p>
+    <p style="color: rgba(255, 255, 255, 0.6);">Length: <span id="length" v-text="length" style="color: #778DA9;"></span></p>
     <div class="in-box">
       <label for="myRange">
         <input type="range" min="8" max="32" value="20" class="slider" id="myRange">
@@ -129,7 +129,26 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: left;
-  color: #2c3e50;
+}
+
+body {
+  background-color: #0D1B2A;
+}
+
+.box{
+    color: #EEF4ED;
+    width: 20vw;
+    min-height: 60vh;
+    padding: 20px;
+    border-radius: 10px;
+    height: auto;
+    background: #1B263B;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    margin-top: 7vh;
+    padding: 10px 25px;
 }
 
 .title {
@@ -140,27 +159,12 @@ export default {
 .bar{
   width: 15vh;
   height: 3px;
-  background-color: rgb(11, 241, 107);
+  background-color: #778DA9;
   margin-bottom: 25px;
 }
 
 .git-link {
-  color: rgb(11, 241, 107);
-}
-.box{
-    color: rgb(250, 250, 250);
-    width: 20vw;
-    min-height: 60vh;
-    padding: 20px;
-    border-radius: 10px;
-    height: auto;
-    background: #2b2b2b;
-    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%);
-    margin-top: 7vh;
-    padding: 10px 25px;
+  color: #778DA9;
 }
 
 .password {
@@ -168,7 +172,7 @@ export default {
   height: 100%;
   background: rgba(255, 255, 255, 0.08);
   border-radius: 8px;
-  color: #fff;
+  color: #E0E1DD;
   text-align: center;
   line-height: 65px;
 }
@@ -189,19 +193,17 @@ export default {
   width: 25px;
   height: 25px;
   border-radius: 50%; 
-  background: rgb(11, 241, 107);
+  background: #778DA9;
   cursor: pointer;
 }
 .slider::-moz-range-thumb {
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background: rgb(11, 241, 107);
+  background: #778DA9;
   cursor: pointer;
 }
-body {
-  background-color: #2b2b2b;
-}
+
 .center {
   margin-left: auto;
   margin-right: auto;
@@ -210,9 +212,9 @@ body {
 }
 
 .btn{
-  background-color: rgb(11, 241, 107);
+  background-color: #778DA9;
   border: none;
-  color: white;
+  color: #E0E1DD;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
@@ -226,11 +228,11 @@ body {
 }
 
 .btn:hover {
-  background-color: rgb(0, 222, 92);
+  background-color: #586d8a;
 }
 
 .copyBtn{
-  background-color: rgb(11, 241, 107);
+  background-color: #778DA9;
   border: none;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -241,7 +243,7 @@ body {
 }
 
 .copyBtn:hover {
-  background-color: rgb(0, 222, 92);
+  background-color: #586d8a;
 }
 
 .in-box{
@@ -249,7 +251,7 @@ body {
   height: 100%;
   background: rgba(255, 255, 255, 0.08);
   border-radius: 8px;
-  color: #fff;
+  color: #E0E1DD;
   text-align: center;
   line-height: 50px;
 }
@@ -267,7 +269,7 @@ body {
 }
 
 .toggler-wrapper input[type="checkbox"]:checked+.toggler-slider {
-    background-color: #44cc66;
+    background-color: #778DA9;
 }
 
 .toggler-wrapper .toggler-slider {
@@ -315,7 +317,7 @@ body {
     width: 75%;
   }
   .password {
-    font-size: 14px;
+    font-size: 12px;
   }
 }
-</style>
+</style>  
